@@ -1,10 +1,7 @@
 # %%
 from pyspark.sql import SparkSession
 from pyspark.sql.types import StructType, StructField, IntegerType, StringType, FloatType, DateType
-from pyspark.sql import functions as F
-from pyspark.sql.functions import mean
-from pyspark.sql.functions import to_timestamp
-import datetime
+from pyspark.sql.functions import col, round, lower
 
 spark = (SparkSession.builder
         .appName("MySparkApp")
@@ -32,15 +29,11 @@ CarRentalData = (CarRentalData.withColumnRenamed('location.city', 'city')
                               .withColumnRenamed('location.state', 'state')
                               .withColumnRenamed('owner.id', 'owner_id')
                               .withColumnRenamed('rate.daily', 'rate_daily')
-                              .withColumnRenamed('vehicle.make', 'vehicle_make')
-                              .withColumnRenamed('vehicle.model', 'vehicle_model')
-                              .withColumnRenamed('vehicle.type', 'vehicle_type')
-                              .withColumnRenamed('vehicle.year', 'vehicle_year'))
+                              .withColumnRenamed('vehicle.make', 'make')
+                              .withColumnRenamed('vehicle.model', 'model')
+                              .withColumnRenamed('vehicle.type', 'type')
+                              .withColumnRenamed('vehicle.year','year'))
                 
-
-# %%
-CarRentalData.columns
-
 
 # %%
 """
@@ -48,14 +41,15 @@ Vemos que las columnas **rating**
 """
 
 # %%
-CarRentalData = CarRentalData.withColumn("rating", F.round(F.col("rating")).cast(IntegerType()))
-CarRentalData = (CarRentalData.withColumn('renterTripsTaken', F.col('renterTripsTaken').cast(IntegerType()))
-                              .withColumn('reviewCount', F.col('reviewCount').cast(IntegerType()))
-                              .withColumn('latitude', F.col('latitude').cast(FloatType()))
-                              .withColumn('longitude', F.col('longitude').cast(FloatType()))
-                              .withColumn('owner_id', F.col('owner_id').cast(IntegerType()))
-                              .withColumn('rate_daily', F.col('rate_daily').cast(IntegerType()))
-                              .withColumn('vehicle_year', F.col('vehicle_year').cast(IntegerType())))
+CarRentalData = CarRentalData.withColumn("rating", round(col("rating")).cast(IntegerType()))
+CarRentalData = (CarRentalData.withColumn('renterTripsTaken', col('renterTripsTaken').cast(IntegerType()))
+                              .withColumn('reviewCount', col('reviewCount').cast(IntegerType()))
+                              .withColumn('latitude', col('latitude').cast(FloatType()))
+                              .withColumn('longitude', col('longitude').cast(FloatType()))
+                              .withColumn('owner_id', col('owner_id').cast(IntegerType()))
+                              .withColumn('rate_daily', col('rate_daily').cast(IntegerType()))
+                              .withColumn('year', col('year').cast(IntegerType())))
+                              
 
 # %%
 georef_usa_state = (georef_usa_state.withColumnRenamed('Geo Point', 'geo_point')
@@ -64,16 +58,23 @@ georef_usa_state = (georef_usa_state.withColumnRenamed('Geo Point', 'geo_point')
                                     .withColumnRenamed('Official Name State', 'ONS')
                                     .withColumnRenamed('Iso 3166-3 Area Code', 'iso_3166_3_ac')
                                     .withColumnRenamed('Type', 'type')
-                                    .withColumnRenamed('United States Postal Service state abbreviation', 'postal_cod')
+                                    .withColumnRenamed('United States Postal Service state abbreviation', 'state')
                                     .withColumnRenamed('State FIPS Code', 'FIPS')
-                                    .withColumnRenamed('State GNIS Code', 'GNIS'))
-georef_usa_state = (georef_usa_state.withColumn('Year', F.col('Year').cast(IntegerType()))
-                                    .withColumn('OCS', F.col('OCS').cast(IntegerType())))
+                                    .withColumnRenamed('State GNIS Code', 'GNIS')
+                                    .withColumnRenamed('Year', 'georef_year'))
+georef_usa_state = (georef_usa_state.withColumn('geo_point', col('geo_point').cast(IntegerType()))
+                                    .withColumn('georef_year', col('georef_year').cast(IntegerType()))
+                                    .withColumn('OCS', col('OCS').cast(IntegerType()))
+                                    .withColumn('GNIS', col('GNIS').cast(IntegerType())))
 
 # %%
-df = CarRentalData.join(georef_usa_state, on='state') n
+georef_usa_state.select('*').show(5)
+
+# %%
+georef_usa_state = georef_usa_state.drop('type')
+df = CarRentalData.join(georef_usa_state, on='state') 
 df = df.na.drop(subset=['rating'])
-df = df.withColumn('fuelType', F.lower('fuelType'))
+df = df.withColumn('fuelType', lower('fuelType'))
 df = df.filter(df.state != 'TX')
 
 # %%

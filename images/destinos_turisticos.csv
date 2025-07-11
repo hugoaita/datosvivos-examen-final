@@ -1,0 +1,166 @@
+"aeropuerto","ciudad","anho","mes","pasajeros"
+BAR,San Carlos de Bariloche,2021,1,48693
+BAR,San Carlos de Bariloche,2021,2,46011
+BAR,San Carlos de Bariloche,2021,3,41665
+BAR,San Carlos de Bariloche,2021,4,29079
+BAR,San Carlos de Bariloche,2021,5,10751
+BAR,San Carlos de Bariloche,2021,6,13419
+BAR,San Carlos de Bariloche,2021,7,43857
+BAR,San Carlos de Bariloche,2021,8,56448
+BAR,San Carlos de Bariloche,2021,9,57508
+BAR,San Carlos de Bariloche,2021,10,60182
+BAR,San Carlos de Bariloche,2021,11,74462
+BAR,San Carlos de Bariloche,2021,12,76788
+BAR,San Carlos de Bariloche,2022,1,90252
+BAR,San Carlos de Bariloche,2022,2,85185
+BAR,San Carlos de Bariloche,2022,3,76145
+BAR,San Carlos de Bariloche,2022,4,28517
+BAR,San Carlos de Bariloche,2022,5,27148
+BAR,San Carlos de Bariloche,2022,6,31173
+CBA,Córdoba,2021,1,23030
+CBA,Córdoba,2021,2,21668
+CBA,Córdoba,2021,3,25831
+CBA,Córdoba,2021,4,19090
+CBA,Córdoba,2021,5,13423
+CBA,Córdoba,2021,6,11581
+CBA,Córdoba,2021,7,23279
+CBA,Córdoba,2021,8,28544
+CBA,Córdoba,2021,9,32598
+CBA,Córdoba,2021,10,44263
+CBA,Córdoba,2021,11,51330
+CBA,Córdoba,2021,12,52027
+CBA,Córdoba,2022,1,60056
+CBA,Córdoba,2022,2,61549
+CBA,Córdoba,2022,3,65882
+CBA,Córdoba,2022,4,34820
+CBA,Córdoba,2022,5,37315
+CBA,Córdoba,2022,6,40656
+DOZ,Mendoza,2021,1,21763
+DOZ,Mendoza,2021,2,21433
+DOZ,Mendoza,2021,3,26521
+DOZ,Mendoza,2021,4,19633
+DOZ,Mendoza,2021,5,11262
+DOZ,Mendoza,2021,6,10572
+DOZ,Mendoza,2021,7,19644
+DOZ,Mendoza,2021,8,25411
+DOZ,Mendoza,2021,9,30068
+DOZ,Mendoza,2021,10,37540
+DOZ,Mendoza,2021,11,48691
+DOZ,Mendoza,2021,12,48692
+DOZ,Mendoza,2022,1,45246
+DOZ,Mendoza,2022,2,48391
+DOZ,Mendoza,2022,3,58188
+DOZ,Mendoza,2022,4,28090
+DOZ,Mendoza,2022,5,26028
+DOZ,Mendoza,2022,6,27784
+ECA,El Calafate,2021,1,12353
+ECA,El Calafate,2021,2,14534
+ECA,El Calafate,2021,3,17131
+ECA,El Calafate,2021,4,10013
+ECA,El Calafate,2021,5,3055
+ECA,El Calafate,2021,6,2049
+ECA,El Calafate,2021,7,6074
+ECA,El Calafate,2021,8,8744
+ECA,El Calafate,2021,9,12477
+ECA,El Calafate,2021,10,18509
+ECA,El Calafate,2021,11,28277
+ECA,El Calafate,2021,12,31889
+ECA,El Calafate,2022,1,31209
+ECA,El Calafate,2022,2,39282
+ECA,El Calafate,2022,3,42840
+ECA,El Calafate,2022,4,14205
+ECA,El Calafate,2022,5,8563
+ECA,El Calafate,2022,6,8489
+IGU,Cataratas del Iguazú,2021,1,6879
+IGU,Cataratas del Iguazú,2021,2,8993
+IGU,Cataratas del Iguazú,2021,3,13452
+IGU,Cataratas del Iguazú,2021,4,11538
+IGU,Cataratas del Iguazú,2021,5,4867
+IGU,Cataratas del Iguazú,2021,6,3912
+IGU,Cataratas del Iguazú,2021,7,12431
+IGU,Cataratas del Iguazú,2021,8,17268
+IGU,Cataratas del Iguazú,2021,9,25055
+IGU,Cataratas del Iguazú,2021,10,31494
+IGU,Cataratas del Iguazú,2021,11,38784
+IGU,Cataratas del Iguazú,2021,12,31551
+IGU,Cataratas del Iguazú,2022,1,11535
+IGU,Cataratas del Iguazú,2022,2,35904
+IGU,Cataratas del Iguazú,2022,3,43115
+IGU,Cataratas del Iguazú,2022,4,24001
+IGU,Cataratas del Iguazú,2022,5,23043
+IGU,Cataratas del Iguazú,2022,6,26113
+NEU,Neuquén,2021,1,11792
+NEU,Neuquén,2021,2,11446
+NEU,Neuquén,2021,3,14774
+NEU,Neuquén,2021,4,12452
+NEU,Neuquén,2021,5,7760
+NEU,Neuquén,2021,6,8186
+NEU,Neuquén,2021,7,13879
+NEU,Neuquén,2021,8,16714
+NEU,Neuquén,2021,9,20463
+NEU,Neuquén,2021,10,23757
+NEU,Neuquén,2021,11,24941
+NEU,Neuquén,2021,12,27866
+NEU,Neuquén,2022,1,25813
+NEU,Neuquén,2022,2,26460
+NEU,Neuquén,2022,3,28324
+NEU,Neuquén,2022,4,17079
+NEU,Neuquén,2022,5,17663
+NEU,Neuquén,2022,6,18104
+SAL,Salta,2021,1,11525
+SAL,Salta,2021,2,14135
+SAL,Salta,2021,3,15835
+SAL,Salta,2021,4,15381
+SAL,Salta,2021,5,9907
+SAL,Salta,2021,6,8972
+SAL,Salta,2021,7,18983
+SAL,Salta,2021,8,24304
+SAL,Salta,2021,9,27408
+SAL,Salta,2021,10,33982
+SAL,Salta,2021,11,39006
+SAL,Salta,2021,12,39431
+SAL,Salta,2022,1,41484
+SAL,Salta,2022,2,41385
+SAL,Salta,2022,3,47843
+SAL,Salta,2022,4,24155
+SAL,Salta,2022,5,24857
+SAL,Salta,2022,6,25547
+TUC,San Miguel de Tucumán,2021,1,9639
+TUC,San Miguel de Tucumán,2021,2,10515
+TUC,San Miguel de Tucumán,2021,3,11387
+TUC,San Miguel de Tucumán,2021,4,8701
+TUC,San Miguel de Tucumán,2021,5,5975
+TUC,San Miguel de Tucumán,2021,6,5802
+TUC,San Miguel de Tucumán,2021,7,10398
+TUC,San Miguel de Tucumán,2021,8,13054
+TUC,San Miguel de Tucumán,2021,9,16701
+TUC,San Miguel de Tucumán,2021,10,19886
+TUC,San Miguel de Tucumán,2021,11,22726
+TUC,San Miguel de Tucumán,2021,12,26039
+TUC,San Miguel de Tucumán,2022,1,24735
+TUC,San Miguel de Tucumán,2022,2,24602
+TUC,San Miguel de Tucumán,2022,3,26611
+TUC,San Miguel de Tucumán,2022,4,13993
+TUC,San Miguel de Tucumán,2022,5,14559
+TUC,San Miguel de Tucumán,2022,6,13875
+USU,Ushuaia,2021,1,20096
+USU,Ushuaia,2021,2,17395
+USU,Ushuaia,2021,3,19205
+USU,Ushuaia,2021,4,13476
+USU,Ushuaia,2021,5,6363
+USU,Ushuaia,2021,6,5749
+USU,Ushuaia,2021,7,20022
+USU,Ushuaia,2021,8,29911
+USU,Ushuaia,2021,9,32865
+USU,Ushuaia,2021,10,27547
+USU,Ushuaia,2021,11,29626
+USU,Ushuaia,2021,12,33325
+USU,Ushuaia,2022,1,46544
+USU,Ushuaia,2022,2,45248
+USU,Ushuaia,2022,3,45592
+USU,Ushuaia,2022,4,15394
+USU,Ushuaia,2022,5,11395
+USU,Ushuaia,2022,6,10404
+
+
+
