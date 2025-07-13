@@ -257,17 +257,17 @@ El dag que realiza la orquestación se encuentra en [cars-rental.py](./dags/cars
 a. Cantidad de alquileres de autos, teniendo en cuenta sólo los vehículos
 ecológicos (fuelType hibrido o eléctrico) y con un rating de al menos 4.
 ```
-SELECT COUNT(*)
+SELECT SUM(renterTripsTaken)
 FROM car_rental_analytics
 WHERE (fueltype = 'hybrid' OR fueltype = 'electric')
      AND rating >= 4
 ```
-771
+26949
 
 b. los 5 estados con menor cantidad de alquileres (mostrar query y visualización).
 
 ```
-SELECT state, COUNT(state) AS rent_number
+SELECT state, SUM(renterTripsTaken) AS rent_number
 FROM car_rental_analytics
 GROUP BY state
 ORDER BY rent_number ASC
@@ -275,11 +275,13 @@ LIMIT 5
 ```
 |state|rent_number|
 |-----|-----------|
-|MT|1|
-|WV|3|
-|NH|3|
-|MS|4|
-|DE|4|
+|MT|7|
+|AR|43|
+|NH|51|
+|WV|76|
+|MS|107|
+
+
 
 ![](images/ej2-query-b.png)
 
@@ -287,51 +289,52 @@ c. los 10 modelos (junto con su marca) de autos más rentados (mostrar query y
 visualización).
 
 ```
-SELECT vehicle_model AS model, 
-       vehicle_make AS make, 
-       COUNT(*) AS rent_count
+SELECT model, 
+       make, 
+       SUM(renterTripsTaken) AS rent_count
 FROM car_rental_analytics
-GROUP BY vehicle_model, vehicle_make 
+GROUP BY model, make 
 ORDER BY rent_count DESC
-LIMIT 10`
+LIMIT 10
 ```
-
 |model|make|rent_count|
 |-----|----|----------|
-|Model 3|Tesla|288|
-|Mustang|Ford|136|
-|Model S|Tesla|122|
-|Wrangler|Jeep|108|
-|Model X|Tesla|103|
-|Corolla|Toyota|78|
-|C-Class|Mercedes-Benz|78|
-|3 Series|BMW|76|
-|Corvette|Chevrolet|68|
-|Camaro|Chevrolet|61|
+|Model 3|Tesla|9.794|
+|Mustang|Ford|5.882|
+|Wrangler|Jeep|4.762|
+|Corolla|Toyota|4.676|
+|Corvette|Chevrolet|4.164|
+|Model S|Tesla|3.952|
+|Model X|Tesla|3.638|
+|3 Series|BMW|3.293|
+|C-Class|Mercedes-Benz|2.818|
+|Camaro|Chevrolet|2.797|
+
 
 ![](images/ej2-query-c.png)
 
 d. El dataset no contiene el campo `year`, por lo cual el análisis no se puede realizar.
 
-![](./images/car_rental.columns.png)
+![](./images/car_rental.schema.png)
+(la columna `year` es el año de fabricación del vehículo)
 
 e. las 5 ciudades con más alquileres de vehículos ecológicos (fuelType hibrido o eléctrico)
 ```
-SELECT city, COUNT(*) AS ecologic_vehicles
+SELECT city, SUM(renterTripsTaken) AS ecologic_vehicles
 FROM car_rental_analytics 
 WHERE fueltype = 'hybrid' OR fueltype = 'electric'
 GROUP BY city
 ORDER BY ecologic_vehicles DESC
 LIMIT 5
 ```
+|city|ecologic_vehicles|
+|----|-----------------|
+|San Diego|1793|
+|Las Vegas|1551|
+|Los Angeles|1075|
+|San Francisco|1058|
+|Portland|928|
 
-|Ciudad| Número de autos ecológicos |
-|------|----------------------------|
-|San Diego |	44 |
-|Las Vegas|	34|
-|Portland|	20|
-|Phoenix|	17|
-|San Jose|	15|
 
 ![](images/ej2-query-e.png)
 
@@ -352,26 +355,62 @@ GROUP BY fueltype
 
 6. Elabore sus conclusiones y recomendaciones sobre este proyecto.
 
-En este proyecto se presenta un Data Warehouse con los autos alquilados.
+En este proyecto se presenta un Data Warehouse de autos alquilados con distintas variables.
 Es interesante porque tiene un campo que representa el tipo de combustible
 del auto alquilado. Si contamos la cantidad de autos alquilados por tipo de combustible
 ```
-SELECT fuelType, COUNT(*) ecologic_count
+SELECT fuelType, SUM(renterTripsTaken) total_rent
 FROM car_rental_analytics
+WHERE fuelType != ''
 GROUP BY fuelType
 ORDER BY ecologic_count DESC
 ```
-|fueltype|ecologic_count|
+|fueltype|total_rent|
 |--------|--------------|
-|gasoline|4.015|
-|electric|542|
-|hybrid|229|
-|NULL|61|
-|diesel|58|
+|gasoline|151.022|
+|electric|17.601|
+|hybrid|9.348|
+|diesel|1.194|
 
-vemos que la mayoría de los vehículos alquilados usan gasolina como combustible. Lamentablemente no disponemos de la columna `year`, que
+![Total de vehiculos alquilados por tipo de combustible](./images/ej2-fueltype-rent.png)
+
+Vemos que la mayoría de los vehículos alquilados usan gasolina como combustible. Lamentablemente no disponemos de la columna `year`, que
 nos permitiría estudiar la evolución del tipo de combustible de los
 autos alquilados en función del tiempo.
+
+Otra cuestión que podríamos investigar es la cantidad de autos alquilados
+según el año de fabricación del vehículo. Por ejemplo, busquemos la cantidad
+de alquileres según el año de fabricación para vehículos fabricados a partir
+del año 2010:
+```
+SELECT year, SUM(renterTripsTaken) AS rent_per_year
+FROM car_rental_analytics
+WHERE year >= 2010
+GROUP BY year
+ORDER BY year
+```
+|year|rent_per_year|
+|----|-------------|
+|2005|1485|
+|2006|2705|
+|2007|3885|
+|2008|5654|
+|2009|3572|
+|2010|6754|
+|2011|8141|
+|2012|9999|
+|2013|12328|
+|2014|15477|
+|2015|18799|
+|2016|21684|
+|2017|21908|
+|2018|26868|
+|2019|17632|
+|2020|3339|
+
+![Alquileres según el año de fabricación del vehículo](./images/ej2-rent-per-year.png)
+
+Vemos que la máxima cantidad de alquileres se da para vehículos fabricados entre el 2015 y el 2019.
 
 # Ejercicio 3 - Dataprep
 1\.​ ¿Para que se utiliza data prep?
